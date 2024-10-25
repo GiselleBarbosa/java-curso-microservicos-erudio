@@ -4,6 +4,7 @@ import com.barbosa.model.Person;
 import com.barbosa.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,25 +15,21 @@ public class PersonController {
 
     @Autowired
     PersonService personService;
-    // private PersonServices = new PersonServices()
 
-    @RequestMapping(
-            method = RequestMethod.GET,
+    @GetMapping(
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Person> findAll() {
         return personService.findAll();
     }
 
-    @RequestMapping(
+    @GetMapping(
             value = "/{id}",
-            method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public Person findById(@PathVariable(value = "id") Long id) {
         return personService.findById(id);
     }
 
-    @RequestMapping(
-            method = RequestMethod.POST,
+    @PostMapping(
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
@@ -40,8 +37,7 @@ public class PersonController {
         return personService.create(person);
     }
 
-    @RequestMapping(
-            method = RequestMethod.PUT,
+    @PutMapping(
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
@@ -49,10 +45,11 @@ public class PersonController {
         return personService.update(person);
     }
 
-    @RequestMapping(
-            value = "/{id}",
-            method = RequestMethod.DELETE)
-    public void delete(@PathVariable(value = "id") Long id) {
+    @DeleteMapping(
+            value = "/{id}")
+    public ResponseEntity<?> delete(@PathVariable(value = "id") Long id) {
         personService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
+
