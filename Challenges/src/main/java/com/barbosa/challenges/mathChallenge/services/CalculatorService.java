@@ -11,7 +11,7 @@ public class CalculatorService {
 
     Converter converter = new Converter();
 
-    public Double sum(String number1, String number2) throws Exception {
+    public Double sum(String number1, String number2) {
 
         if (!isNumeric(number1) || !isNumeric(number2)) {
             throw new UnsupportedMathOperationException("Please set a numeric value!");
