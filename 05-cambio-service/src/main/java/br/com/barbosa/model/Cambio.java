@@ -1,19 +1,38 @@
 package br.com.barbosa.model;
 
+import jakarta.persistence.*;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
+
+@Entity(name = "cambio")
 
 public class Cambio implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "from_currency", nullable = false, length = 3)
     private String from;
+
+    @Column(name = "to_currency", nullable = false, length = 3)
     private String to;
+
+    @Column(nullable = false)
     private BigDecimal conversionFactor;
+
+    @Transient
     private BigDecimal converterValue;
+
+    @Transient
     private String environment;
+
+    public Cambio() {
+    }
 
     public Cambio(Long id, String from, String to, BigDecimal conversionFactor, BigDecimal converterValue, String environment) {
         this.id = id;
@@ -22,9 +41,6 @@ public class Cambio implements Serializable {
         this.conversionFactor = conversionFactor;
         this.converterValue = converterValue;
         this.environment = environment;
-    }
-
-    public Cambio() {
     }
 
     public Long getId() {
