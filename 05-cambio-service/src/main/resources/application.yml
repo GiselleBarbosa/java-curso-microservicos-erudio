@@ -12,11 +12,10 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQLDialect
+    open-in-view: false
   flyway:
     url: jdbc:mysql://localhost:3306/cambio_service
     schemas: cambio_service
     user: root
     password: admin123
+    baseline-on-migrate: true
