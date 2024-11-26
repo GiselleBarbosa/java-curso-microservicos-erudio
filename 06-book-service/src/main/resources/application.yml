@@ -1,27 +1,29 @@
 server:
-  port: 8000
+  port: 8100
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
 spring:
   application:
-    name: cambio-service
+    name: book-service
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/cambio_service?useTimezone=true&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/book_service?useTimezone=true&serverTimezone=UTC
     username: root
     password: admin123
+  jackson:
+    default-property-inclusion: NON_NULL
+    serialization:
+      fail-on-empty-beans: false
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
     open-in-view: false
   flyway:
-    url: jdbc:mysql://localhost:3306/cambio_service
-    schemas: cambio_service
+    url: jdbc:mysql://localhost:3306/book_service
+    schemas: book_service
     user: root
     password: admin123
     baseline-on-migrate: true
-
-
