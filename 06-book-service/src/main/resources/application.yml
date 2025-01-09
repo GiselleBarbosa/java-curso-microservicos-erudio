@@ -27,3 +27,8 @@ spring:
     user: root
     password: admin123
     baseline-on-migrate: true
+resilience4j.retry:
+  instances:
+    foo-bar:
+      max-attempts: 8
+      waitDuration: 500ms
