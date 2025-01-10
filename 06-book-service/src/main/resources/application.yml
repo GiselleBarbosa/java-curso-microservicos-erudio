@@ -30,5 +30,6 @@ spring:
 resilience4j.retry:
   instances:
     foo-bar:
-      max-attempts: 8
-      waitDuration: 500ms
+      max-attempts: 5
+      waitDuration: 1s
+      enable-exponential-backoff: true
