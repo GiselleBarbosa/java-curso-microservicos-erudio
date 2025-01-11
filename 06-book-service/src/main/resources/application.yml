@@ -27,9 +27,17 @@ spring:
     user: root
     password: admin123
     baseline-on-migrate: true
-resilience4j.retry:
-  instances:
-    foo-bar:
-      max-attempts: 5
-      waitDuration: 1s
-      enable-exponential-backoff: true
+
+resilience4j:
+  rate-limiter:
+    instances:
+      default:
+        limit-for-period: 2
+        limit-refresh-period: 10s
+
+  retry:
+    instances:
+      foo-bar:
+        max-attempts: 5
+        waitDuration: 1s
+        enable-exponential-backoff: true
