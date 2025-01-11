@@ -34,7 +34,10 @@ resilience4j:
       default:
         limit-for-period: 2
         limit-refresh-period: 10s
-
+  bulkhead:
+    instances:
+        default:
+            max-concurrent-calls: 10
   retry:
     instances:
       foo-bar:
