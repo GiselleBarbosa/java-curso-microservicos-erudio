@@ -27,7 +27,6 @@ spring:
     user: root
     password: admin123
     baseline-on-migrate: true
-
 resilience4j:
   rate-limiter:
     instances:
@@ -44,3 +43,14 @@ resilience4j:
         max-attempts: 5
         waitDuration: 1s
         enable-exponential-backoff: true
+springdoc:
+  show-actuator: true
+  api-docs:
+    path: book-service/v3/api-docs
+  swagger-ui:
+    config-url: /book-service/v3/api-docs/swagger-config
+    url: /book-service/v3/api-docs
+management:
+  tracing:
+    sampling:
+      probability: 1.0
