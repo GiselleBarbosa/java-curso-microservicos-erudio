@@ -24,4 +24,16 @@ spring:
     password: admin123
     baseline-on-migrate: true
 
+springdoc:
+  show-actuator: true
+  api-docs:
+    path: cambio-service/v3/api-docs
+  swagger-ui:
+    config-url: /cambio-service/v3/api-docs/swagger-config
+    url: /cambio-service/v3/api-docs
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+
 
