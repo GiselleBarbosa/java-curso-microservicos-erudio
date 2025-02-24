@@ -4,6 +4,8 @@ import br.com.barbosa.model.Cambio;
 import br.com.barbosa.repository.CambioRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +27,8 @@ public class CambioController {
     @Autowired
     private CambioRepository repository;
 
+    private Logger logger = LoggerFactory.getLogger(CambioController.class);
+
     @Operation(summary = "Get cambio from currency")
     @GetMapping(value = "/{amount}/{from}/{to}")
     public Cambio getCambio(
@@ -32,8 +36,9 @@ public class CambioController {
             @PathVariable("from") String from,
             @PathVariable("to") String to
     ) {
-        var cambio = repository.findByFromAndTo(from, to);
 
+        logger.info("GETCAMBIO CHAMADO COM -> {}, {} and {}", amount, from, to);
+        var cambio = repository.findByFromAndTo(from, to);
         if (cambio == null) throw new RuntimeException("Currency Unsupported");
 
         var port = environment.getProperty("local.server.port");
