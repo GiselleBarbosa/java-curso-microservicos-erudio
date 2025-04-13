@@ -57,7 +57,10 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <image>
-                        <name>gisellebarbosa/${project.artifactId}:${project.version}</name>
+                        <builder>paketobuildpacks/builder:tiny</builder>
+                        <env>
+                            <BP_JVM_VERSION>17</BP_JVM_VERSION>
+                        </env>
                     </image>
                     <pullPolicy>IF_NOT_PRESENT</pullPolicy>
                 </configuration>
